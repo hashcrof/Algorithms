@@ -1,0 +1,102 @@
+Chapter 1
+
+1.1 Exercises
+
+Q1. Real world example of sorting or convex hull problem.
+
+Q2. Other measures of efficiency besides running time.
+- Space
+
+Q3. Strengths and limitations of Data Structures you've seen.
+Arrays
+- easy to add and access elements
+- not sorted
+
+Q4. Similarities/differences between shortest path and traveling-salesman problems.
+
+TSP "simple cycle visiting every node in the graph with the smallest weight"
+ -find a path that contains a permutation of every node in the graph(i.e visits all nodes)
+ -answer must be a cycle
+ -solution will necessarily repeat a node in its path
+ -NP-complete
+
+Shortest Path "the path between two given nodes with the smallest weight; not necessarily a cycle"
+ -any given shortest path may, and often does, contain a proper subset of the nodes in the graph.
+ -solution will NOT necessarily repeat a node in its path
+ -known polynomial-time.
+
+1.2 Exercises
+Q1. Example of an application that uses algorithmic content at the application level and discuss the function of algorithms involved.
+    Google maps --- finding the shortest path from starting to ending points(Dijkstra's Algorithm).
+Q2. n <= 8lgn or 1 < n < 44
+Q3. 100n^2 < 2^n; log100 + 2logn < n; 0 < n < 15
+
+Chapter 2
+
+2.1 Exercises
+Q1. A = [31, 41, 59, 26, 41, 58]
+          ___                               ___
+         |   |                             |   |
+    (a) [31, 41, 59, 26, 41, 58]  (b) [31, 41, 59, 26, 41, 58] (c) [31, 41, 59, 26, 41, 58]
+         ____________                               ____
+        |            |                             |    |
+    (d)[31, 41, 59, 26, 41, 58]   (e) [26, 31, 41, 59, 58]   (f) [26, 31, 41, 58, 59]
+        |    |   |   |
+         ___  ___  __
+
+Q2. Nonincreasing INSERTION SORT Procedure
+    for j in 2..A.length
+       key = A[j]
+       i = j - 1
+       while i > 0 and key > A[i]
+          A[i+1] = A[i]
+          i = i - 1
+       A[i+1] = key
+
+Q3. Pseudocode for Linear search given a sequence of n numbers A=[a1;a2;...;an] and a value 􏰍v.
+    Return index i if v = A[i] or NIL if v is not in the array.
+
+    for i in 1...A.length
+      if A[i] == v
+         return i
+    return NIL
+
+    Loop invariant: At the start of each iteration of the for loop we have A[j] != v for all j < i.
+    Initialization:  Before the first loop iteration the invariant holds since the statement is
+                    empty.
+    Maintenance: The loop invariant is maintained at each iteration, since otherwise at the
+                 i-th iteration there is some some j < i such that A[j] = v. However, in that case for
+                 the j-th iteration of the loop the value j is returned, and there is no i-th iteration of
+                 the loop, a contradiction.
+    Termination: When the loop terminates, there may be two cases: one is that it terminates
+                 after i ≤ length(A) iterations, and returns i, in which case the if conditional ensures
+                 that A[i] = v. The other case is that i exceeds length(A), in this case by the loop
+                 invariant we have that for all j ≤ length(A) A[j] != v, thus returning NIL is correct.
+
+2.2 Exercises
+ Q1. Theta of n-cubed
+ Q2. Write pseudocode for selection sort.
+
+     for i in 1..A.length - 1
+        min = i
+        j = i + 1
+        while j < A.length + 1
+           if A[j] < A[min]
+              min = j
+           j = j + 1
+        temp = A[i]
+        A[i] = A[min]
+        A[min] = temp
+
+    Loop invariant: At the start of each iteration of the for loop, A[1..j] is sorted in nondecreasing order for all j < i
+    Initialization: Before the first loop iteration the invariant holds since the statement is
+                    empty.
+    Maintenance: The loop invariant is maintained at each iteration, since at the i-th iteration A[1..i-1] are all sorted and A[i..n]
+                 contains elements only greater than or equal to elements in A[1..i-1].
+    Termination: The loop terminates after i < A.length
+
+    Best case - sorted but outer for loop and while loop still run for A.length minus one: Theta of n-squared
+    Worst case - non-increasing order so while loop also has to run all the way to n:  Theta of n-squared
+    Runs only for n - 1 elements because at that point we're left with two elements to compare A[n-1] and A[n] and when it terminates
+    the larger has been swapped with  the smaller. If we go a step further we'll only have a subarray of one element A[n] to compare
+    with nothing
