@@ -6,7 +6,7 @@ def three_sum(nums)
     n = nums.length - 1
     nums = nums.sort
     nums.each_with_index do |el, i|
-        next if el == nums[i-1] && i > 0
+        next if i > 0 && el == nums[i-1]
         triplets = two_sum(nums, i+1, n, el)
         triplets.each do |triplet|
             next if found.include? triplet
@@ -33,6 +33,29 @@ def two_sum(nums, from, to, target)
 
     results.to_a
 end
+
+=begin
+def three_sum(nums)
+    found = Set.new
+    n = nums.length - 1
+    nums = nums.sort
+    nums.each_with_index do |el, i|
+        next if i > 0 && el == nums[i-1]
+        seen = Hash.new{|h, k| h[k] = -1}
+        (i+1).upto(n) do |j|
+            num = nums[j]
+            complement = -el - num
+            if seen[complement] > -1
+                triplet = [el, num, complement].sort
+                found << triplet unless found.include? triplet
+            else
+                seen[num] = j
+            end
+        end
+    end
+    found.to_a
+end
+=end
 
 puts three_sum([-4,-2,-2,-2,0,1,2,2,2,3,3,4,4,6,6]) == [[-4,2,2],[-4,1,3],[-4,0,4],[-4,-2,6],[-2,0,2],[-2,-2,4]]
 puts three_sum([-1, 0, 1, 2, -1, -4]) == [[-1, 0, 1],[-1, -1, 2]]
