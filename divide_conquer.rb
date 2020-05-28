@@ -25,7 +25,7 @@ class DivideConquer
   end
 
   def self.merge_sort(arr) #Onlogn time; On space
-    n = a.size
+    n = arr.size
     return arr if n <= 1
     mid = n / 2
     lft = arr[0...mid]
