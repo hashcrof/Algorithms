@@ -25,4 +25,10 @@ class Fibonacci
     end
     cache[n]
   end
+
+  def self.recursive(n)
+    return n if n < 2
+
+     recursive(n-1) + recursive(n-2)
+  end
 end

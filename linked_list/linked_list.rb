@@ -25,9 +25,20 @@ module LinkedList
     end
 
     def insert(node, val)
+      new_node = Node.new(val)
+      _next = node.next
+      node.next = new_node
+      new_node.next = _next
     end
 
     def delete(node)
+      _prev = Node.new(nil, self.head)
+      _curr = self.head
+      while _curr && _curr.data != node.data
+        _prev, _curr = _curr, _curr.next
+      end
+      _prev.next = _curr.next
+      self.head = _prev.next if self.head.data == node.data
     end
 
     def length
@@ -59,3 +70,15 @@ puts l.length == 4
 append_node = LinkedList::Node.new(6)
 l.append(append_node)
 puts l.length == 5
+
+#delete head
+l.delete(prepend_node)
+puts l.length == 4
+
+#delete a middle node
+l.delete(node2)
+puts l.length == 3
+
+l.insert(node1, 7)
+puts l.length == 4
+puts l.inspect
