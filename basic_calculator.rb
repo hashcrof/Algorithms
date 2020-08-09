@@ -24,8 +24,8 @@ def calculate(s)
             i += 1
         elsif c == ')'
             while operator_stack[-1] != '('
-                n2 = operand_queue.pop()
-                n1 = operand_queue.pop()
+                n2 = operand_queue.pop
+                n1 = operand_queue.pop
                 op = operator_stack.pop
                 operand_queue << operate(n1, n2, op)
             end
@@ -34,8 +34,8 @@ def calculate(s)
         else
             #while current operator has equal or lesser precendence than previous
             while(operator_stack.length > 0 && precedence(c, operator_stack[-1]) <= 0)
-                n2 = operand_queue.pop()
-                n1 = operand_queue.pop()
+                n2 = operand_queue.pop
+                n1 = operand_queue.pop
                 op = operator_stack.pop
                 operand_queue << operate(n1, n2, op)
             end
