@@ -17,8 +17,8 @@ module BinarySearchTree
 
     def insert(v)
       case val <=> v
-      when 1 then insert_left(v) #greater than
-      when -1 then insert_right(v) # less than
+      when 1 then insert_left(v) #new val is less than current node's val
+      when -1 then insert_right(v) #new val is greater than current node's val
       when 0 then false # equal to
       end
     end

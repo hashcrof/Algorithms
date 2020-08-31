@@ -17,7 +17,7 @@ class MinHeap
     @heap[1]
   end
 
-  #remove top
+  #remove top/extract min
   def poll
     return unless @size > 0
     swap(1, @size)
