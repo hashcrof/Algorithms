@@ -17,7 +17,7 @@ class CircularQueue
     :type value: Integer
     :rtype: Boolean
 =end
-    def en_queue(value)
+    def enqueue(value)
         return false if @size + 1 > @capacity
         @q[@tail] = value
         @tail = (@tail + 1) % @capacity
@@ -30,7 +30,7 @@ class CircularQueue
     Delete an element from the circular queue. Return true if the operation is successful.
     :rtype: Boolean
 =end
-    def de_queue()
+    def dequeue()
         return false if is_empty
         @head = (@head + 1) % @capacity
         @size -= 1
