@@ -35,6 +35,10 @@ module BinarySearchTree
       [self.lft, self.rgt]
     end
 
+    def leaf?
+      lft.null_node? && rgt.null_node?
+    end
+
     private
 
     def insert_right(v)
